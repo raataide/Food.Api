@@ -1,8 +1,6 @@
 'use strict'
 
 require('../models/categoria-model');
-const mong = require('mongoose');
-const categoria = mong.model('categorias');
 const repo = require('../repositories/categoria-repository');
 
 function categoriaController(){
@@ -15,24 +13,23 @@ categoriaController.prototype.post = async (req,res) =>{
 };
 
 categoriaController.prototype.put = async (req,res) =>{ 
-    await categoria.findByIdAndUpdate(req.params.id, {$set: req.body});
-    let catEncontrada = await categoria.findById(req.params.id);
-    res.status(202).send(catEncontrada);
+    let result = await new repo().update(req.params.id, req.body);    
+    res.status(202).send(result);
 };
 
 categoriaController.prototype.get = async (req,res) =>{ 
-    let lista = await categoria.find();
+    let lista = await new repo().getAll();
     res.status(200).send(lista);
 };
 
 categoriaController.prototype.getById = async (req,res) =>{ 
-    let catEncontrada = await categoria.findById(req.params.id);
+    let catEncontrada = await new repo().getById(req.params.id);
     res.status(202).send(catEncontrada);
 };
 
 categoriaController.prototype.delete = async (req,res) =>{ 
 
-    let deletado = await categoria.findByIdAndRemove(req.params.id);
+    let deletado = await new repo().delete(req.params.id);
     res.status(204).send(deletado);
 };
 

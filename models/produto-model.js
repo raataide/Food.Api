@@ -24,7 +24,7 @@ const produtoModel = new schema({
         default: Date.now
     },
     preco:{
-        type: number,
+        type: Number,
         required: true
     },
     foto:{
