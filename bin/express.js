@@ -12,7 +12,7 @@ const usuarioRouter = require('../routes/usuario-router');
 const app = express();
 
 //Configurando conexão com banco de dados
-mong.connect(variables.Database.conn);
+mong.connect(variables.Database.conn, {useNewUrlParser:  true});
 
 //Config Parse Json
 app.use(bodyP.json());
