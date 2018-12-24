@@ -49,8 +49,7 @@ usuarioController.prototype.put = async (req,res) =>{
     ctrlBase.put(_repo, _validation, req, res);
 }
 
-usuarioController.prototype.get = async (req,res) =>{ 
-    console.log('teste asdasdasd');
+usuarioController.prototype.get = async (req,res) =>{     
     ctrlBase.get(_repo, req, res);
 }
 

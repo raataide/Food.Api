@@ -1,36 +1,44 @@
 'use strict'
 
-require('../models/categoria-model');
 const repo = require('../repositories/categoria-repository');
+const ctrlBase = require('../bin/base/controllerBase');
+const validation = require('../bin/helpers/validation');
+const _repo = new repo();
 
-function categoriaController(){
+
+function categoriaController() {
 
 }
 
-categoriaController.prototype.post = async (req,res) =>{ 
-    let result = await new repo().create(req.body);
-    res.status(201).send(result);
+categoriaController.prototype.post = async (req, res) => {
+    let _validationContract = new validation();
+
+    _validationContract.isRequired(req.body.titulo, 'Título é obrigatório.');
+    _validationContract.isRequired(req.body.foto, 'Foto é obrigatória.');
+
+    ctrlBase.post(_repo, _validationContract, req, res);    
 };
 
-categoriaController.prototype.put = async (req,res) =>{ 
-    let result = await new repo().update(req.params.id, req.body);    
-    res.status(202).send(result);
+categoriaController.prototype.put = async (req, res) => {
+    let _validationContract = new validation();
+
+    _validationContract.isRequired(req.body.titulo, 'Título é obrigatório.');
+    _validationContract.isRequired(req.body.foto, 'Foto é obrigatória.');
+    _validationContract.isRequired(req.body.params.id, 'Informe a categoria a ser atualizada.');
+
+    ctrlBase.put(_repo, _validationContract, req, res); 
 };
 
-categoriaController.prototype.get = async (req,res) =>{ 
-    let lista = await new repo().getAll();
-    res.status(200).send(lista);
+categoriaController.prototype.get = async (req, res) => {
+    ctrlBase.get(_repo, req, res);
 };
 
-categoriaController.prototype.getById = async (req,res) =>{ 
-    let catEncontrada = await new repo().getById(req.params.id);
-    res.status(202).send(catEncontrada);
+categoriaController.prototype.getById = async (req, res) => {
+    ctrlBase.getById(_repo, req, res);
 };
 
-categoriaController.prototype.delete = async (req,res) =>{ 
-
-    let deletado = await new repo().delete(req.params.id);
-    res.status(204).send(deletado);
+categoriaController.prototype.delete = async (req, res) => {
+    ctrlBase.delete(_repo, req, res);
 };
 
 module.exports = categoriaController;

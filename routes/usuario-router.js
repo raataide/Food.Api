@@ -10,9 +10,12 @@ const ctrl = new controller();
 
 router.get('/',auth, ctrl.get);
 router.get('/:id', auth, ctrl.getById);
-router.post('/', ctrl.post);
+router.post('/', auth, ctrl.post);
 router.put('/:id', auth, ctrl.put);
 router.delete('/:id', auth, ctrl.delete);
+
+
 router.post('/autenticar', ctrl.autenticar);
+router.post('/register', ctrl.post);
 
 module.exports = router;

@@ -15,7 +15,8 @@ const categoriaModel = new schema({
     },
     ativo:{
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     },
     foto:{
         type: String,

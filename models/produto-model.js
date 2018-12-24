@@ -16,7 +16,8 @@ const produtoModel = new schema({
     },
     ativo:{        
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     },
     dataCriacao:{
         type: Date,
@@ -25,7 +26,8 @@ const produtoModel = new schema({
     },
     preco:{
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     foto:{
         type: String,
