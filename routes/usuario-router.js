@@ -8,7 +8,7 @@ const auth = require('../middlewares/auth');
 
 const ctrl = new controller();
 
-router.get('/',auth, ctrl.get);
+router.get('/', auth, ctrl.get);
 router.get('/:id', auth, ctrl.getById);
 router.post('/', auth, ctrl.post);
 router.put('/:id', auth, ctrl.put);
