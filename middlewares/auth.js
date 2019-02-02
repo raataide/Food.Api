@@ -3,7 +3,7 @@ const variables = require('../bin/configuration/variables');
 
 module.exports = async (req,res,next) => {
     let token = req.body.token || req.query.query || req.headers['x-access-token'] || req.headers.authorization;
-    
+    console.log(token);
     const parts = token.split(' ');
     if (parts.length === 2){
         token = token.replace('Bearer ' , '');
